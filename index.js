@@ -1,7 +1,8 @@
 require('dotenv').config()
 const express = require('express');
 const authRouter = require('./modules/auth/auth.router');
-const colorRouter = require('./modules/colorPalette/color.router');
+// const colorRouter = require('./modules/colorPalette/color.router');
+const dishRouter = require('./modules/dish/dish.router');
 
 const mongoose = require('mongoose');
 const cors = require('cors')
@@ -25,8 +26,9 @@ app.use(cors());
 
 // Tất cả HTTP request nào có tiền tố là /api/posts => thì đi vào postRouter
 
-app.use('/api/auth', authRouter);
-app.use('/api/color', colorRouter );
+// app.use('/api/auth', authRouter);
+// app.use('/api/color', colorRouter );
+app.use('/api/dish', dishRouter);
 
 app.use('*', (req, res) => {
   res.send({ message: '404 not found' })
