@@ -19,7 +19,7 @@ const search = async (req, res) => {
 
 const createDish = async (req, res) => {
   try {
-    const { name, address, district, tags } = req.body;
+    const { name, address, district, tags, img } = req.body;
     const existedDish = await DishModel.findOne({ name });
 
     if (existedDish) throw new Error('Name duplicate');
@@ -28,6 +28,7 @@ const createDish = async (req, res) => {
       name,
       address,
       district,
+      img,
       tags
     })
 

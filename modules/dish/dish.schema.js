@@ -13,6 +13,10 @@ const Dishchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    img: {
+        type: String,
+        required: true
+    },
     tags: {
         type: String,
         required: true
