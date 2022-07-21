@@ -94,6 +94,40 @@ const deleteDish = async (req, res) => {
   }
 }
 
+const getDishes = async(req,res) =>{
+  try {
+    const dishes = await (await DishModel
+      .find({})
+      // .skip(offset)
+      // .limit(limit)
+      );
+    const totalDishes = await DishModel.countDocuments({});
+        res.send(
+      { success: 1, 
+        data: {
+          dishes: dishes,
+          total: totalDishes
+        }
+        });
+  } catch (err) {
+    res.status(400).send({ success: 0, data: [] });
+  }
+}
+const getDish = async(req,res) =>{
+  try {
+    const {dishId} = req.params;
+    const dish = await (await DishModel
+      .findById(dishId)
+      );
+        res.send(
+      { success: 1, 
+        data: dish
+        });
+  } catch (err) {
+    res.status(400).send({ success: 0, data: [] });
+  }
+}
+
 module.exports = {
-  search, createDish, deleteDish
+  search, createDish, deleteDish, getDishes, getDish
 }
