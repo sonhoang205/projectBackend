@@ -26,8 +26,7 @@ app.use(cors());
 
 // Tất cả HTTP request nào có tiền tố là /api/posts => thì đi vào postRouter
 
-// app.use('/api/auth', authRouter);
-// app.use('/api/color', colorRouter );
+app.use('/api/auth', authRouter);
 app.use('/api/dish', dishRouter);
 
 app.use('*', (req, res) => {

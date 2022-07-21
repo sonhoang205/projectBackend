@@ -14,7 +14,7 @@ const createFood = async (req,res) =>{
              sort
          })
 
-         res.res({
+         res.send({
              success:1,
              data: newFood
              
