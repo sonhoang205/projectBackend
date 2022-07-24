@@ -86,7 +86,20 @@ const getDish = async(req,res) =>{
     res.status(400).send({ success: 0, data: [] });
   }
 }
+const updateDish = async (req, res) => {
+  try {
+    const { dishId } = req.params;
+    const dataUpdateDish = req.body;
+
+    const updatedDish = await DishModel
+      .findByIdAndUpdate(dishId, dataUpdateDish, { new: true });
+
+    res.send({ success: 1, data: updatedDish });
+  } catch (err) {
+    res.status(400).send({ success: 0, data: null });
+  }
+}
 
 module.exports = {
-  search, createDish, deleteDish, getDishes, getDish
+  search, createDish, deleteDish, getDishes, getDish, updateDish
 }

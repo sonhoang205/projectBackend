@@ -1,7 +1,7 @@
 const UserModel = require('./user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const res = require('express/lib/response');
+// const res = require('express/lib/response');
 
 const register = async (req, res) => {
   try {
@@ -25,7 +25,7 @@ const register = async (req, res) => {
     // hydrate document => JSON hoá => bỏ các trường linh tinh mongoose đi
     const cloneNewUser = JSON.parse(JSON.stringify(newUser));
 
-    res.send({
+    res.status(200).send({
       success: 1,
       data: {
         ...cloneNewUser,
@@ -34,6 +34,7 @@ const register = async (req, res) => {
     });
 
   } catch (err) {
+    console.log('error');
     res.status(400).send({ success: 0, message: err.message })
   }
 }
@@ -73,7 +74,7 @@ const login = async (req, res) => {
       success: 1,
       data: { _id: userId, token }
     });
-    console.log(process.env.SECRET_KEY);
+    // console.log(process.env.SECRET_KEY);
 
   } catch (err) {
     res.status(400).send({ success: 0, message: err.message })
