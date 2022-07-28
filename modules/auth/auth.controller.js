@@ -67,7 +67,7 @@ const login = async (req, res) => {
     const token = jwt.sign({
       userId,
     }, process.env.SECRET_KEY, {
-      expiresIn: 60 * 60 * 24 * 7
+      expiresIn: 60 * 60 * 24
     })
 
     res.send({
